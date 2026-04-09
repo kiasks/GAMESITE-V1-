@@ -15,6 +15,6 @@ Marquen sus calendarios: **10 de Abril, 2026**.
 ## 📝 Créditos
 - **Dev:** kiasks
 - **Code & Physics:** Gemini AI
-- **Ports:** codebeautify
-- **Original Games:** ninjamuffin99 (FNF), DVloper (Granny)
+- **Ports:** codebeautify (FNF y GRANNY) y yell0wsuit (cuttherope)
+- **Original Games:** ninjamuffin99 (FNF), DVloper (Granny) zeptolab (CUTTHEROPE) 
 
