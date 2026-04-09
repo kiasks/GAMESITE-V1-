@@ -12,13 +12,20 @@
             display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh;
         }
 
+        /* ESTILO PARA TU LOGO */
+        .menu-logo {
+            max-width: 300px; /* Ajusta el tamaño aquí */
+            height: auto;
+            margin-top: 30px;
+            filter: drop-shadow(0 0 15px #0f0); /* Esto le da el brillo neón al logo */
+        }
+
         #arcade-title {
             font-size: 45px; color: #0f0; text-shadow: 0 0 20px #0f0;
-            margin-top: 20px; margin-bottom: 40px; letter-spacing: 5px;
+            margin-top: 10px; margin-bottom: 40px; letter-spacing: 5px;
             text-align: center;
         }
 
-        /* Contenedor restaurado para alinear las cartas */
         .menu-container {
             display: flex; gap: 30px; perspective: 1000px; flex-wrap: wrap; justify-content: center;
             max-width: 1200px; padding: 20px;
@@ -42,11 +49,12 @@
         .game-icon { font-size: 50px; margin-top: 30px; }
         .game-name { font-size: 18px; font-weight: bold; text-align: center; }
 
-        /* Colores restaurados */
         .snake-card { --color: #0f0; }
         .fnf-card { --color: #ff00ff; }
         .granny-card { --color: #f00; }
-        .trabajando-card { --color: #ffcc00; } /* Color amarillo para WIP */
+        .wip-card { --color: #ffcc00; } 
+        .cut-the-rope-card { --color: #a3ff00; }
+        .htmlphysics-card { --color: #0088ff; }
 
         #game-frame-container {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -65,6 +73,8 @@
     </style>
 </head>
 <body>
+
+    <img src="pagesprites/LOGO.png" alt="Logo Arcade" class="menu-logo">
 
     <h1 id="arcade-title">ARCADE SELECTION</h1>
 
@@ -89,13 +99,12 @@
             <div class="game-name">GAME.WIP<br></div>
         </div>
 
-
         <div class="game-card granny-card" onclick="openGame('grannyinfinite.html')">
             <div class="game-icon">👵</div>
             <div class="game-name">GRANNY<br>ORIGINAL</div>
         </div>  
         
-          <div class="game-card cut the rope-card" onclick="openGame('CUTTHEROPEORIGINAL.html')">
+        <div class="game-card cut-the-rope-card" onclick="openGame('CUTTHEROPEORIGINAL.html')">
             <div class="game-icon">🍬</div>
             <div class="game-name">CUT THE<br>ROPE</div>
         </div>
