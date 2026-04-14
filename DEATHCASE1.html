@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Death Case - Capítulo 1 Final</title>
+    <style>
+        body {
+            background-color: #050505;
+            color: #eee;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #ff0000;
+            text-shadow: 3px 3px 0px #440000;
+            letter-spacing: 10px;
+            margin-bottom: 50px;
+            animation: glitch 2s infinite;
+        }
+
+        #menu-principal, #pantalla-historia, #escena-investigacion {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        #pantalla-historia, #escena-investigacion { display: none; position: fixed; top: 0; left: 0; }
+
+        #cuadro-texto {
+            border-left: 5px solid #ff0000;
+            background: rgba(10, 10, 10, 0.95);
+            padding: 40px;
+            max-width: 800px;
+            width: 85%;
+            min-height: 250px;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            box-shadow: 0 0 30px rgba(255,0,0,0.2);
+        }
+
+        .nombre-personaje { color: #ff0000; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; display: block; }
+
+        /* MINIJUEGO CORREGIDO */
+        #escena-investigacion {
+            background: url('pagesprites/oficina_crimen.jpg') no-repeat center center;
+            background-size: cover;
+            background-color: #111;
+        }
+
+        .objeto-oculto {
+            position: absolute;
+            cursor: crosshair;
+            border: 1px dashed rgba(255,0,0,0.5); /* Borde para que no sea imposible hallarlos */
+            transition: 0.3s;
+        }
+        .objeto-oculto:hover { background: rgba(255,0,0,0.2); }
+
+        #pista-metal { top: 65%; left: 42%; width: 70px; height: 70px; }
+        #pista-huellas { top: 78%; left: 12%; width: 130px; height: 110px; }
+        #pista-impacto { top: 32%; left: 58%; width: 100px; height: 100px; }
+
+        #contador-pistas {
+            position: absolute; top: 20px; right: 20px;
+            background: #ff0000; color: white; padding: 15px;
+            font-weight: bold; border: 2px solid white;
+        }
+
+        .capitulo { padding: 20px; border: 2px solid #333; background: #111; cursor: pointer; }
+        .btn-sig { margin-top: 30px; background: transparent; color: #ff0000; border: 1px solid #ff0000; padding: 10px 40px; cursor: pointer; font-family: inherit; }
+        .btn-sig:hover { background: #ff0000; color: white; }
+
+        @keyframes glitch { 0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 100% { transform: translate(0); } }
+    </style>
+</head>
+<body onclick="activarMusica()">
+
+    <div id="menu-principal">
+        <h1>DEATH CASE</h1>
+        <div class="capitulo" onclick="irACapitulo(1)">
+            <span>CAP 1: El Misterio de Tobias</span>
+        </div>
+    </div>
+
+    <div id="pantalla-historia">
+        <div id="cuadro-texto"></div>
+        <button id="btn-continuar" class="btn-sig" onclick="siguienteEscena()">CONTINUAR</button>
+    </div>
+
+    <div id="escena-investigacion">
+        <div id="contador-pistas">PISTAS: <span id="encontradas">0</span>/3</div>
+        <div id="pista-metal" title="Fragmento de metal" class="objeto-oculto" onclick="encontrarPista('metal')"></div>
+        <div id="pista-huellas" title="Huellas de barro" class="objeto-oculto" onclick="encontrarPista('huellas')"></div>
+        <div id="pista-impacto" title="Grieta en pared" class="objeto-oculto" onclick="encontrarPista('impacto')"></div>
+    </div>
+
+    <audio id="musica-ambiente" loop><source src="pagesprites/MENU.mp3" type="audio/mpeg"></audio>
+    <audio id="sonido-lluvia" loop><source src="pagesprites/lluvia.mp3" type="audio/mpeg"></audio>
+    <audio id="sonido-van"><source src="pagesprites/van_llegando.mp3" type="audio/mpeg"></audio>
+    <audio id="sonido-pista"><source src="pagesprites/evidencia.mp3" type="audio/mpeg"></audio>
+
+    <script>
+        let escenaActual = 0;
+        let pistas = 0;
+        let inventario = { metal: false, huellas: false, impacto: false };
+
+        const historia = [
+            { texto: "*(El sonido de la lluvia golpea el metal de la van. Los frenos chirrían frente a la escena del crimen)*", sonido: "van" },
+            { nombre: "Sargento Torres", texto: "¡Detective! Qué bueno que llega, la prensa está por volverse loca. El escenario adentro es... bueno, no es algo que se vea todos los días.", sonido: "lluvia" },
+            { nombre: "Detective", texto: "Dígame qué tenemos, Sargento. No vine desde la ciudad para escuchar quejas sobre el clima." },
+            { nombre: "Sargento Torres", texto: "Es el señor Tobias, el dueño del parque. Lo encontramos en su oficina hace dos horas. El atacante usó un mazo... el impacto fue brutal. No hubo tiempo de pedir ayuda." },
+            { nombre: "Detective", texto: "Si pueden evacuen la zona. No quiero a ningún reportero pisando mis pruebas. Mantengan el perímetro cerrado.", sonido: "lluvia" },
+            { nombre: "Sargento Torres", texto: "Ya lo hicimos, el parque está despejado. Ya puede pasar a la oficina principal, planta alta. Tenga cuidado detective... hay algo extraño ahí dentro." },
+            { nombre: "OBJETIVO", texto: "<b style='color:yellow'>MODO INVESTIGACIÓN:</b> Busca pistas en la oficina. Necesitas encontrar el pedazo de metal, las huellas y la dirección del impacto." }
+        ];
+
+        const historiaFinal = [
+            { nombre: "Detective", texto: "*(Analizando el fragmento)* Este metal no es de un mazo común... está viejo, tiene restos de pintura roja desgastada. Parece parte de una atracción del parque." },
+            { nombre: "Detective", texto: "*(Mirando el suelo)* Huellas talla grande. El patrón de la suela está muy gastado. Y la grieta en la pared... el golpe vino desde arriba. El agresor es zurdo." },
+            { nombre: "Detective", texto: "Esto es suficiente por ahora. Alguien conocía los horarios de Tobias perfectamente. Sargento, prepárese... esto apenas comienza.", sonido: "lluvia" },
+            { texto: "<center><h1 style='color:red'>CONTINUARÁ...</h1></center>" }
+        ];
+
+        function activarMusica() { document.getElementById('musica-ambiente').play().catch(e=>{}); }
+
+        function irACapitulo(num) {
+            document.getElementById('menu-principal').style.display = 'none';
+            document.getElementById('pantalla-historia').style.display = 'flex';
+            siguienteEscena();
+        }
+
+        function siguienteEscena() {
+            if (escenaActual < historia.length) {
+                renderizar(historia[escenaActual]);
+                if (historia[escenaActual].nombre === "OBJETIVO") {
+                    document.getElementById('btn-continuar').style.display = 'none';
+                    setTimeout(iniciarMinijuego, 3000);
+                }
+                escenaActual++;
+            } else {
+                let indexFinal = escenaActual - historia.length;
+                if (indexFinal < historiaFinal.length) {
+                    renderizar(historiaFinal[indexFinal]);
+                    escenaActual++;
+                } else { location.reload(); }
+            }
+        }
+
+        function renderizar(data) {
+            let html = data.nombre ? `<span class="nombre-personaje">${data.nombre}</span>` : "";
+            html += data.texto;
+            document.getElementById('cuadro-texto').innerHTML = html;
+            if(data.sonido === "van") document.getElementById('sonido-van').play();
+            if(data.sonido === "lluvia") document.getElementById('sonido-lluvia').play();
+            if(data.sonido === "pista") document.getElementById('sonido-pista').play();
+        }
+
+        function iniciarMinijuego() {
+            document.getElementById('pantalla-historia').style.display = 'none';
+            document.getElementById('escena-investigacion').style.display = 'block';
+        }
+
+        function encontrarPista(tipo) {
+            if (!inventario[tipo]) {
+                inventario[tipo] = true;
+                pistas++;
+                document.getElementById('encontradas').innerText = pistas;
+                document.getElementById('sonido-pista').play();
+                if (pistas === 3) {
+                    alert("¡Todas las pistas encontradas! Analizando...");
+                    document.getElementById('escena-investigacion').style.display = 'none';
+                    document.getElementById('pantalla-historia').style.display = 'flex';
+                    document.getElementById('btn-continuar').style.display = 'block';
+                    siguienteEscena();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
