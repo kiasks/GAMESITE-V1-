@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>MY ULTIMATE ARCADE - (DEMO)</title>
+    <title>GAME SITE (UPTADE)</title>
     <link rel="icon" type="image/png" href="pagesprites/FAVICON.png">
     
     <style>
@@ -30,7 +30,6 @@
             max-width: 1200px; padding: 20px;
         }
 
-        /* TARJETA ACTUALIZADA PARA PORTADAS */
         .game-card {
             width: 220px; height: 320px; background: #111;
             border: 4px solid #333; border-radius: 15px;
@@ -38,11 +37,10 @@
             cursor: pointer; transition: 0.4s;
             position: relative; overflow: hidden;
             box-sizing: border-box;
-            background-size: cover; /* La imagen cubre todo */
+            background-size: cover;
             background-position: center;
         }
 
-        /* Efecto de sombra para que el texto resalte sobre la imagen */
         .game-card::after {
             content: '';
             position: absolute;
@@ -62,21 +60,22 @@
             z-index: 2; margin-bottom: 20px; text-shadow: 2px 2px 4px #000;
         }
 
-        /* ASIGNACIÓN DE PORTADAS */
+        /* 🖼️ ASIGNACIÓN DE PORTADAS (Nombres corregidos para que coincidan con el HTML) */
         .snake-card { --color: #0f0; background-image: url('pagesprites/snakeportada.png'); }
         .fnf-card { --color: #ff00ff; background-image: url('pagesprites/fnfportada.jpg'); }
         .fruit-card { --color: #ffcc00; background-image: url('pagesprites/fruitninjaportada.png'); }
-        .death-card { --color: #f00; background-image: url('pagesprites/deathcase1.png'); } /* Tu juego Death Case */
+        .death-card { --color: #f00; background-image: url('pagesprites/deathcase1.png'); }
         .granny-card { --color: #888; background-image: url('pagesprites/grannyportada.jpg'); }
+        .granny2-card { --color: #0088ff; background-image: url('pagesprites/granny2portada.jpg'); }
+        .hollow-knigth-card { --color: #fff; background-image: url('pagesprites/hollowkngihtportada.jpg'); }
+        .baldis-basics-R-card { --color: #0f0; background-image: url('pagesprites/baldiRportada.jpg'); }
+        .fnaf3-card { --color: #55ff55; background-image: url('pagesprites/fnaf3portada.webp'); }
+        .fnac2-card { --color: #3b82f6; background-image: url('pagesprites/fnac2portada.webp'); }
+        .solar-smash-card { --color: #ff4400; background-image: url('pagesprites/solarsmashportada.jpg'); } /* Asegúrate que este archivo exista */
+        .crazy-cattle-card { --color: #a3ff00; background-image: url('pagesprites/CRAZYCATTLE3Dportada.png'); }
+        .jetpack-joyride-card { --color: #ffee00; background-image: url('pagesprites/jetpackjoyrideportada.jpg'); }
         .cut-the-rope-card { --color: #a3ff00; background-image: url('pagesprites/cuttherope.jpg'); }
         .htmlphysics-card { --color: #0088ff; background-image: url('GAMESSPRITES/LOGOHTMLPHYSICS.png'); }
-        .granny-2-card { --color: #0088ff; background-image: url('pagesprites/granny2portada.jpg'); }
-         .hollow-knigth-card { --color: #0088ff; background-image: url('pagesprites/hollowkngihtportada.jpg'); }
-         .jetpack-joyride-card { --color: #0088ff; background-image: url('pagesprites/jetpackjoyrideportada.jpg'); }
-        .baldis-basics-R-card { --color: #0088ff; background-image: url('pagesprites/baldiRportada.jpg'); }
-        .five-nights-at-freddys-3-card { --color: #0088ff; background-image: url('pagesprites/fnaf3portada.webp'); }
-        .five-nights-at-candys-2-card { --color: #0088ff; background-image: url('pagesprites/fnac2portada.webp'); }
-        .crazy-cattle-3d-card { --color: #0088ff; background-image: url('pagesprites/CRAZYCATTLE3Dportada.png'); }
         
         #game-frame-container {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -101,63 +100,63 @@
 
     <div class="menu-container">
         <div class="game-card snake-card" onclick="openGame('snake.html')">
-            <div class="game-name">SNAKE 3D<br>SMOOTH</div>
+            <div class="game-name">SNAKE 3D</div>
         </div>
 
         <div class="game-card fnf-card" onclick="openGame('FNFORIGINAL.html')">
-            <div class="game-name">FRIDAY NIGHT<br>FUNKIN</div>
+            <div class="game-name">FRIDAY NIGHT FUNKIN</div>
         </div>
         
         <div class="game-card fruit-card" onclick="openGame('FRUITNINJA!!.html')">
-            <div class="game-name">FRUIT<br>NINJA</div>
+            <div class="game-name">FRUIT NINJA</div>
         </div>
         
         <div class="game-card death-card" onclick="openGame('DEATHCASE1.html')">
-            <div class="game-name">DEATH CASE<br>(DEMO)</div>
+            <div class="game-name">DEATH CASE (DEMO)</div>
         </div>
 
         <div class="game-card granny-card" onclick="openGame('grannyinfinite.html')">
-            <div class="game-name">GRANNY<br>ORIGINAL</div>
+            <div class="game-name">GRANNY ORIGINAL</div>
         </div>  
         
         <div class="game-card granny2-card" onclick="openGame('GRANNY2.html')">
-            <div class="game-name">GRANNY2<br>ORIGINAL</div>
+            <div class="game-name">GRANNY 2</div>
         </div>  
 
-        <div class="game-card hoollowknigth-card" onclick="openGame('HOLLOWKINIGTH.html')">
-            <div class="game-name">HOLLOW<br>KNIGTH</div>
+        <div class="game-card hollow-knigth-card" onclick="openGame('HOLLOWKINIGTH.html')">
+            <div class="game-name">HOLLOW KNIGHT</div>
         </div>  
 
-        <div class="game-card baldisbasicsR-card" onclick="openGame('BALDIREMASTERED.html')">
-            <div class="game-name">BALDIS BASICS<br>REMASTERED</div>
+        <div class="game-card baldis-basics-R-card" onclick="openGame('BALDIREMASTERED.html')">
+            <div class="game-name">BALDI REMASTERED</div>
         </div> 
         
         <div class="game-card fnaf3-card" onclick="openGame('FNAF3.html')">
-            <div class="game-name">FIVE NIGHTS AT FREDIS<br>3</div>
+            <div class="game-name">FNAF 3</div>
         </div>  
         
-          <div class="game-card fnac2-card" onclick="openGame('FNAC2.html')">
-            <div class="game-name">FIVE NIGHTS AT CANDYS<br>2</div>
+        <div class="game-card fnac2-card" onclick="openGame('FNAC2.html')">
+            <div class="game-name">FNaC 2</div>
         </div>   
         
-        <div class="game-card SOLARSMASH-card" onclick="openGame('SOLARSMASH.html')">
-            <div class="game-name">SOLAR<br>SMASH</div>
+        <div class="game-card solar-smash-card" onclick="openGame('SOLARSMASH.html')">
+            <div class="game-name">SOLAR SMASH</div>
         </div>  
 
-          <div class="game-card CRAZYCATTLE-card" onclick="openGame('CRAZYCATTLE3D.html')">
-            <div class="game-name">CRAZY<br>CATTLE 3D</div>
+        <div class="game-card crazy-cattle-card" onclick="openGame('CRAZYCATTLE3D.html')">
+            <div class="game-name">CRAZY CATTLE 3D</div>
         </div>  
         
-        <div class="game-card jetpackjoyride-card" onclick="openGame('JETPACKJOYRIDE.html')">
-            <div class="game-name">JETPACK<br>JOYRIDE</div>
+        <div class="game-card jetpack-joyride-card" onclick="openGame('JETPACKJOYRIDE.html')">
+            <div class="game-name">JETPACK JOYRIDE</div>
         </div>
         
         <div class="game-card cut-the-rope-card" onclick="openGame('CUTTHEROPEORIGINAL.html')">
-            <div class="game-name">CUT THE<br>ROPE</div>
+            <div class="game-name">CUT THE ROPE</div>
         </div>
 
         <div class="game-card htmlphysics-card" onclick="openGame('HTMLphysics.html')">
-            <div class="game-name">HTML<br>physics 3D</div>
+            <div class="game-name">HTML PHYSICS 3D</div>
         </div>
     </div>
 
