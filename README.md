@@ -17,6 +17,8 @@ Marquen sus calendarios: **15 de Abril, 2026**.
 ## 📝 Créditos
 - **Dev:** kiasks
 - **Code & Physics:** Gemini AI
-- **Ports:** codebeautify (FNF y GRANNY) y yell0wsuit (cuttherope), emuos (fruit ninja)
-- **Original Games:** ninjamuffin99 (FNF), DVloper (Granny) zeptolab (Cut The Rope) halfbrick (Fruit Ninja)
+- **Ports:** codebeautify (FNF y GRANNY) y yell0wsuit (cuttherope)
+- **Original Games:** ninjamuffin99 (FNF), DVloper (Granny1,2) Zeptolab (Cut The Rope) Halfbrick (Fruit Ninja,Jetpack Joyride) Paradyme Games (Solar Smash) Anna (Crazy Cattle 3D)-segun gemini. Team cherry (Hollow Knight)
+- Basically Games (Baldis basics) Scott Cawthon (five nights at freddys 3) Emil "Ace" Macko (five nights at candys 2)
 
+- Kiasks o kias2 (GameSite, Snake 3D, HtmL Physics 3D, Death Case y 1v1??¡?¡?¡?¡?)
