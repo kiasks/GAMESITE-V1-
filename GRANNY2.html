@@ -3,6 +3,13 @@
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        
+        <meta property="og:title" content="Granny 2 - Juega Gratis">
+        <meta property="og:image" content="https://kiasks.github.io/GAMESITE-V1-/pagesprites/granny2portada.webp">
+        <meta property="og:description" content="Sobrevive a Granny y Grandpa en esta secuela.">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://kiasks.github.io/GAMESITE-V1-/pagesprites/granny2portada.webp">
+
         <title>Unity WebGL Player | Granny 2</title>
         <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/forms-docs-slides-glgl/ngng@main/TemplateData/favicon.ico"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bubbls/ruffle@895d0224580381ddd003fc2ab72afead3cf134ad/john.css"/>
@@ -83,7 +90,6 @@
                 updateBannerVisibility();
             }
 
-            // Unir archivos pesados de Unity
             async function mergeFiles(parts, onProgress) {
                 let loaded = 0;
                 const total = parts.length;
@@ -146,7 +152,6 @@
 
             initializeGame();
 
-            // Fix para que el ratón no se escape de la interfaz de tu Lenovo
             window.addEventListener('mousedown', () => {
                 if(canvas) canvas.focus();
             });
